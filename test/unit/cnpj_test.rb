@@ -43,4 +43,15 @@ class CnpjTest < Minitest::Test
   test "generates stripped number" do
     assert_match /\A\d{14}\z/, CNPJ.generate
   end
+
+  test "compare objects by their numeric value" do
+    one = CNPJ.new("54550752000155")
+    other = CNPJ.new("54550752000155")
+    different = CNPJ.new("32228235377")
+
+    assert_equal one, other
+
+    refute_equal one, different
+    refute_equal other, different
+  end
 end
